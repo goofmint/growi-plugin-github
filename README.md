@@ -10,6 +10,8 @@ This is a GROWI plugin to access GitHub API
 ::github[issue]{repo=weseek/growi per_page=10}
 ```
 
+![](./screenshots/issues.jpg)
+
 You can use the following options by [REST API endpoints for issues \- GitHub Docs](https://docs.github.com/en/rest/issues/issues?apiVersion=2022-11-28).
 
 ### Query Parameters
