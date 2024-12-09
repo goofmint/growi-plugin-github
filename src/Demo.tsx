@@ -2,18 +2,13 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
-import { rssReader } from './RSSReader';
+import { gitHub } from './GitHub';
 
 const href = 'https://qiita.com/tags/growi/feed';
 
-const RSSReader = rssReader(() => <a href={href}>RSS</a>);
+const GitHub = gitHub(() => <a href={href}>RSS</a>);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RSSReader
-      href={href}
-    >
-      RSS
-    </RSSReader>
   </React.StrictMode>,
 );

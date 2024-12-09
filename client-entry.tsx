@@ -1,5 +1,5 @@
 import config from './package.json';
-import { rssReader, rssReaderPlugin } from './src/RSSReader';
+import { gitHub, githubPlugin } from './src/GitHub';
 import { Options, Func, ViewOptions } from './types/utils';
 
 declare const growiFacade : {
@@ -21,10 +21,10 @@ const activate = (): void => {
   const originalCustomViewOptions = optionsGenerators.customGenerateViewOptions;
   optionsGenerators.customGenerateViewOptions = (...args) => {
     const options = originalCustomViewOptions ? originalCustomViewOptions(...args) : optionsGenerators.generateViewOptions(...args);
-    const A = options.components.a;
+    const { code } = options.components;
     // replace
-    options.components.a = rssReader(A);
-    options.remarkPlugins.push(rssReaderPlugin as any);
+    options.components.code = gitHub(code);
+    options.remarkPlugins.push(githubPlugin as any);
     return options;
   };
 
@@ -32,9 +32,9 @@ const activate = (): void => {
   const originalGeneratePreviewOptions = optionsGenerators.customGeneratePreviewOptions;
   optionsGenerators.customGeneratePreviewOptions = (...args) => {
     const preview = originalGeneratePreviewOptions ? originalGeneratePreviewOptions(...args) : optionsGenerators.generatePreviewOptions(...args);
-    const { a } = preview.components;
-    preview.components.a = rssReader(a); // Wrap the default component
-    preview.remarkPlugins.push(rssReaderPlugin as any);
+    const { code } = preview.components;
+    preview.components.code = gitHub(code); // Wrap the default component
+    preview.remarkPlugins.push(githubPlugin as any);
     return preview;
   };
 };
